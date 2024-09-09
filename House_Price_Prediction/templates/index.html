@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            margin-top: 15px;
+        }
+
+        input, select {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Predict House Price</h1>
+        <form action="/predict" method="POST">
+            <label for="total_bedrooms">Total Bedrooms:</label>
+            <input type="number" id="total_bedrooms" name="total_bedrooms" list="bedroom-suggestions" required>
+            <datalist id="bedroom-suggestions">
+                <!-- Add suggestions here -->
+                <option value="1">
+                <option value="2">
+                <option value="3">
+                <option value="4">
+                <option value="5">
+                <option value="6">
+                <option value="7">
+                <!-- You can dynamically generate these options based on your data if needed -->
+            </datalist>
+
+            <label for="total_rooms">Total Rooms:</label>
+            <input type="number" id="total_rooms" name="total_rooms" list="room-suggestions" required>
+            <datalist id="room-suggestions">
+                <!-- Add suggestions here -->
+                <option value="1">
+                <option value="2">
+                <option value="3">
+                <option value="4">
+                <option value="5">
+                <option value="6">
+                <option value="7">
+                <!-- You can dynamically generate these options based on your data if needed -->
+            </datalist>
+
+            <label for="housing_median_age">House Age:</label>
+            <input type="number" id="housing_median_age" name="housing_median_age" list="age-suggestions" required>
+            <datalist id="age-suggestions">
+                <!-- Add suggestions here -->
+                <option value="0">
+                <option value="5">
+                <option value="10">
+                <option value="15">
+                <option value="20">
+                <option value="25">
+                <option value="30">
+                <option value="35">
+                <option value="40">
+                <option value="45">
+                <option value="50">
+                <!-- You can dynamically generate these options based on your data if needed -->
+            </datalist>
+
+            <label for="population">Population:</label>
+            <input type="number" id="population" name="population" list="population-suggestions" required>
+            <datalist id="population-suggestions">
+                <!-- Add suggestions here -->
+                <option value="1000">
+                <option value="2000">
+                <option value="3000">
+                <option value="4000">
+                <option value="5000">
+                <option value="6000">
+                <option value="7000">
+                <option value="8000">
+                <!-- You can dynamically generate these options based on your data if needed -->
+            </datalist>
+
+            <label for="ocean_proximity">Ocean Proximity:</label>
+            <select id="ocean_proximity" name="ocean_proximity" required>
+                <option value="NEAR BAY">NEAR BAY</option>
+                <option value="NEAR OCEAN">NEAR OCEAN</option>
+                <option value="ISLAND">ISLAND</option>
+                <option value="INLAND">INLAND</option>
+                <option value="<1H OCEAN">&lt;1H OCEAN</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            Predicted House Price: Rs.{{ prediction }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
